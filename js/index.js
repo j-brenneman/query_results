@@ -14,15 +14,10 @@ music_url.addEventListener('load', function () {
     a.href = '/show.html?link=' + responseData.data.children[i].data.permalink;
 
     var p = document.createElement('p');
+    var div = document.getElementsByTagName('div')[0];
     p.appendChild(a);
-    document.body.appendChild(p);
+    div.appendChild(p);
     }
   }
 });
 music_url.send(null);
-
-
-// 'http://www.reddit.com/r/Music/comments/38icdz/mickey_avalon_here_ask_me_almost_anything/.json'
-// new XHR
-// open XHR 'get', url??
-// candidate_totals . when you load .. (addEventListener)

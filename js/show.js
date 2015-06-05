@@ -23,16 +23,26 @@ music_show_url.addEventListener('load', function () {
   var response = music_show_url.response;
   var responseData = JSON.parse(response);
 
+  var description = responseData[0].data.children[0].data.secure_media.oembed.description;
+  var div = document.getElementsByTagName('div')[0];
   var youtube_id = responseData[0].data.children[0].data.secure_media.oembed.url;
   var youtube_url = youtube_id.replace('watch?v=', 'v/');
   var iframe = document.createElement('iframe');
   iframe.src = youtube_url;
-  iframe.height = '320';
-  iframe.width = '600';
-  document.body.appendChild(iframe);
+  iframe.height = '400';
+  iframe.width = '650';
+  div.appendChild(iframe);
 
+  if (description) {
   var p = document.createElement('p');
-  p.innerHTML = responseData[0].data.children[0].data.secure_media.oembed.description;
-  document.body.appendChild(p);
+  p.innerHTML = description;
+  div.appendChild(p);
+  } else {
+  var p = document.createElement('p');
+  p.innerHTML = 'Music Video';
+  div.appendChild(p);
+  }
+
+
 });
 music_show_url.send(null);
